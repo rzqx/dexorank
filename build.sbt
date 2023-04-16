@@ -4,7 +4,7 @@ ThisBuild / organization := "io.github.rzqx"
 ThisBuild / organizationName := "rzqx"
 
 lazy val root = (project in file(".")).settings(
-  name := "lexorank",
+  name := "dexorank",
   libraryDependencies ++= List(
     "org.scalameta" %% "munit" % "0.7.29" % Test
   )
