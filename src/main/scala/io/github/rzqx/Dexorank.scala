@@ -2,9 +2,9 @@ package io.github.rzqx
 
 import scala.util.Try
 
-final class Lexorank private (val decimal: BigDecimal)
+final class Dexorank private (val decimal: BigDecimal)
     extends AnyVal
-    with Ordered[Lexorank]
+    with Ordered[Dexorank]
     with Product1[BigDecimal]
     with Serializable {
 
@@ -20,36 +20,45 @@ final class Lexorank private (val decimal: BigDecimal)
 
   override def toString: String = toPaddedString(0)
 
-  override def compare(that: Lexorank): Int = {
+  override def compare(that: Dexorank): Int = {
     this.decimal.compare(that.decimal)
   }
 
   override def _1: BigDecimal = decimal
 
-  override def canEqual(that: Any): Boolean = that.isInstanceOf[Lexorank]
+  override def canEqual(that: Any): Boolean = that.isInstanceOf[Dexorank]
 }
 
-object Lexorank {
-  def between(a: Lexorank, b: Lexorank): Lexorank = {
+object Dexorank {
+  def between(a: Dexorank, b: Dexorank): Dexorank = {
     val (lower, upper) = if (a < b) (a, b) else (b, a)
 
     val d = (upper.decimal - lower.decimal) / 2
-    val truncated = d.round(new java.math.MathContext(1, java.math.RoundingMode.DOWN))
-    new Lexorank(lower.decimal + truncated)
+
+    val truncated = if (d >= 1) {
+      d.setScale(0, BigDecimal.RoundingMode.DOWN)
+    } else {
+      d.round(new java.math.MathContext(1, java.math.RoundingMode.DOWN))
+    }
+
+    new Dexorank(lower.decimal + truncated)
   }
 
-  def parse(value: String): Try[Lexorank] = Try(Lexorank(value))
+  def between(a: String, b: String): Dexorank =
+    between(Dexorank(a), Dexorank(b))
 
-  def apply(value: String): Lexorank = {
+  def parse(value: String): Try[Dexorank] = Try(Dexorank(value))
+
+  def apply(value: String): Dexorank = {
     val decimal = BigDecimal(value)
 
     if (decimal.signum == -1) {
       throw new IllegalArgumentException("Lexorank cannot be negative")
     } else {
       if (decimal.isWhole) {
-        new Lexorank(decimal.setScale(1, BigDecimal.RoundingMode.DOWN))
+        new Dexorank(decimal.setScale(1, BigDecimal.RoundingMode.DOWN))
       } else {
-        new Lexorank(decimal)
+        new Dexorank(decimal.underlying.stripTrailingZeros())
       }
     }
   }
