@@ -7,7 +7,7 @@ to use `BigDecimal` for a straightforward implementation with less overhead.
 
 ## Examples
 
-```
+```scala
 /** Create a new rank with any BigDecimal or BigDecimal string */
 Dexorank(BigDecimal("1.23")) // OK
 Dexorank("1.23") // OK
