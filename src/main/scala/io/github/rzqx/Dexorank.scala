@@ -49,9 +49,7 @@ object Dexorank {
 
   def parse(value: String): Try[Dexorank] = Try(Dexorank(value))
 
-  def apply(value: String): Dexorank = {
-    val decimal = BigDecimal(value)
-
+  def apply(decimal: BigDecimal): Dexorank = {
     if (decimal.signum == -1) {
       throw new IllegalArgumentException("Lexorank cannot be negative")
     } else {
@@ -62,4 +60,6 @@ object Dexorank {
       }
     }
   }
+
+  def apply(value: String): Dexorank = apply(BigDecimal(value))
 }
