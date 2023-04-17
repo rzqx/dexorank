@@ -1,5 +1,3 @@
-import xerial.sbt.Sonatype.*
-
 val Scala212 = "2.12.17"
 val Scala213 = "2.13.10"
 val Scala3 = "3.2.2"
@@ -16,10 +14,13 @@ ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports"
 ThisBuild / scalacOptions ++= List("-Ywarn-unused")
 
 ThisBuild / licenses := Seq("APL2" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
-ThisBuild / sonatypeProjectHosting := Some(
-  GitHubHosting("rzqx", "dexorank", "me@melvinlow.com"))
+ThisBuild / homepage := Some(url("https://github.com/rzqx/dexorank"))
+ThisBuild / developers := List(
+  Developer("rzqx", "Melvin Low", "me@melvinlow.com", url("melvinlow.com"))
+)
 
-ThisBuild / publishTo := sonatypePublishToBundle.value
+ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
+ThisBuild / sonatypeRepository := "https://s01.oss.sonatype.org/service/local"
 
 usePgpKeyHex("821A82C15670B776F9950C8046E96DBCFD1E8107")
 
