@@ -21,6 +21,8 @@ ThisBuild / sonatypeProjectHosting := Some(
 
 ThisBuild / publishTo := sonatypePublishToBundle.value
 
+usePgpKeyHex("821A82C15670B776F9950C8046E96DBCFD1E8107")
+
 lazy val root = (project in file(".")).settings(
   name := "dexorank",
   description := "Base 10 Lexorank",
