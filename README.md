@@ -3,7 +3,7 @@
 Dexorank is a base 10 version of Jira's Lexorank implemented
 as a thin wrapper around `BigDecimal`. By using base 10, we
 sacrifice some of the space efficiency of Lexorank (base 62) but gain the ability
-to use `BigDecimal` for a straightforward implementation with less overhead.
+to use `BigDecimal` for a straightforward implementation with little additional overhead.
 
 ## Examples
 
