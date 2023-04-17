@@ -5,9 +5,19 @@ as a thin wrapper around `BigDecimal`. By using base 10, we
 sacrifice some of the space efficiency of Lexorank (base 62) but gain the ability
 to use `BigDecimal` for a straightforward implementation with little additional overhead.
 
+## Installation
+
+Add the following to your `build.sbt`:
+
+```scala
+libraryDependencies += "io.github.rzqx" %% "dexorank" % "<version>"
+```
+
 ## Examples
 
 ```scala
+import io.github.rzqx.Dexorank
+
 /** Create a new rank with any BigDecimal or BigDecimal string */
 Dexorank(BigDecimal("1.23")) // OK
 Dexorank("1.23") // OK
