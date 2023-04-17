@@ -16,7 +16,7 @@ ThisBuild / scalacOptions ++= List("-Ywarn-unused")
 ThisBuild / licenses := Seq("APL2" -> url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
 ThisBuild / homepage := Some(url("https://github.com/rzqx/dexorank"))
 ThisBuild / developers := List(
-  Developer("rzqx", "Melvin Low", "me@melvinlow.com", url("melvinlow.com"))
+  Developer("rzqx", "Melvin Low", "me@melvinlow.com", url("https://melvinlow.com"))
 )
 
 ThisBuild / sonatypeCredentialHost := "s01.oss.sonatype.org"
